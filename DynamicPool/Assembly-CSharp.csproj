@@ -61,6 +61,7 @@
     <Compile Include="Assets/Source/MODEL/ObjectPool.cs" />
     <Compile Include="Assets/Source/MODEL/Singleton.cs" />
     <Compile Include="Assets/Source/CONTROLLER/InputController.cs" />
+    <Compile Include="Assets/Source/MODEL/IObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
