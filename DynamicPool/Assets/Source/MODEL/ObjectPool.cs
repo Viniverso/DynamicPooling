@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : MonoBehaviour, IPObject
 {
-    // Start is called before the first frame update
-    void Start()
+    private PooledType myType;
+
+    public GameObject Object { get; }
+
+    public PooledType Type { get; set; }
+
+
+    private void Awake()
+    {
+        Type = myType;
+    }
+
+    private void OnEnable()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
         
     }
