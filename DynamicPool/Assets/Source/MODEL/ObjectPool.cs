@@ -2,18 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour, IPObject
+public class ObjectPool : BasePool
 {
-    private PooledType myType;
-
-    public GameObject Object { get; }
-
-    public PooledType Type { get; set; }
-
 
     private void Awake()
     {
-        Type = myType;
+        ObjectInstance = this.gameObject;
     }
 
     private void OnEnable()
