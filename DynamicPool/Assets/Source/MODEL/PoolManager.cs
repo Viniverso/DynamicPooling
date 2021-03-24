@@ -4,36 +4,47 @@ using UnityEngine;
 
 public class PoolManager : Singleton<PoolManager>
 {
-    public Dictionary<PooledType, Queue<IPObject>> container;
+    public PoolData pooledData;
+
+    private Dictionary<PooledType, Queue<BasePool>> container;
+
+    private void Awake()
+    {
+        container = new Dictionary<PooledType, Queue<BasePool>>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        var seekIObject = GameObject.FindObjectsOfType<ObjectPool>();
-        foreach (ObjectPool _oP in seekIObject)
+        if (pooledData)
         {
-            OccupyMemory(_oP);
+            foreach (BasePool _oP in pooledData.GetPools)
+            {
+                OccupyMemory(_oP);
+            }
         }
     }
 
-    public void RegisterObject(PooledType _type, IPObject _storedObject)
+    public void RegisterObject(PooledType _type, BasePool _storedObject)
     {
-        _storedObject.Object.SetActive(false);
+        _storedObject.ObjectInstance.SetActive(false);
         if (container.ContainsKey(_type))
         {
             container[_type].Enqueue(_storedObject);
+            Debug.Log("Container " + _type.ToString());
         }
         else
         {
-            Queue<IPObject> _enqueue = new Queue<IPObject>();
+            Queue<BasePool> _enqueue = new Queue<BasePool>();
             _enqueue.Enqueue(_storedObject);
             container.Add(_type,_enqueue);
+            Debug.Log("Container " + _type.ToString());
         }
     }
 
-    public Queue<IPObject>[] GetObjectsByPoolType(PooledType _bytype)
+    public Queue<BasePool>[] GetObjectsByPoolType(PooledType _bytype)
     {
-        List<Queue<IPObject>> typeObjects = new List<Queue<IPObject>>();
+        List<Queue<BasePool>> typeObjects = new List<Queue<BasePool>>();
 
         foreach (var _obj in container)
         {
@@ -47,11 +58,14 @@ public class PoolManager : Singleton<PoolManager>
     }
 
 
-    public void OccupyMemory(ObjectPool _pooledObject , int _amountInstances = 3)
+    public void OccupyMemory(BasePool _pooledObject, int _amountInstances = 1)
     {
         for(int _i = 0; _i < _amountInstances; _i++)
         {
-            Instantiate(_pooledObject);
+            var _instance = Instantiate(_pooledObject.gameObject);
+            BasePool _pooledComp = _instance.GetComponent<BasePool>();
+            _pooledComp.ObjectInstance = _instance;
+            RegisterObject(_pooledObject.Type, _pooledComp);
         }
     }
 }
