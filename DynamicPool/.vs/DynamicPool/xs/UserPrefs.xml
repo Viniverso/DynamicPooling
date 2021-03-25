@@ -1,10 +1,13 @@
 ﻿<Properties StartupConfiguration="{C3B628F2-0864-8643-E3A5-86AA797F09C7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Source/MODEL/BasePool.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Source/VIEW/BasePEntity.cs">
     <Files>
-      <File FileName="Assets/Source/MODEL/PoolManager.cs" Line="24" Column="14" />
-      <File FileName="Assets/Source/MODEL/GameManager.cs" Line="18" Column="1" />
-      <File FileName="Assets/Source/MODEL/ObjectPool.cs" Line="15" Column="29" />
-      <File FileName="Assets/Source/MODEL/BasePool.cs" Line="5" Column="17" />
+      <File FileName="Assets/Source/MODEL/PoolManager.cs" Line="24" Column="63" />
+      <File FileName="Assets/Source/MODEL/GameManager.cs" Line="10" Column="30" />
+      <File FileName="Assets/Source/MODEL/NewMonoBehaviour.cs" Line="13" Column="51" />
+      <File FileName="Assets/Source/VIEW/BasePEntity.cs" Line="1" Column="1" />
+      <File FileName="Assets/Source/VIEW/DecorativePool.cs" Line="1" Column="1" />
+      <File FileName="Assets/Source/VIEW/InteractivePool.cs" Line="1" Column="1" />
+      <File FileName="Assets/Source/VIEW/NewMonoBehaviour.cs" Line="8" Column="11" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,8 +15,9 @@
           <Node name="DynamicPool" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Source" expanded="True">
-                <Node name="MODEL" expanded="True">
-                  <Node name="BasePool.cs" selected="True" />
+                <Node name="MODEL" expanded="True" />
+                <Node name="VIEW" expanded="True">
+                  <Node name="BasePEntity.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -24,7 +28,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6f9d3f45-d0fc-4632-bd1c-bc87f99f6f0b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="99ace527-369a-4a61-a225-c59131de7d2d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

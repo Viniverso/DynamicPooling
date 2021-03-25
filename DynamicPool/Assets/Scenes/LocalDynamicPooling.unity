@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 17325004}
+  - component: {fileID: 17325006}
   - component: {fileID: 17325005}
   m_Layer: 0
   m_Name: PoolManager
@@ -164,10 +165,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 17325003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bcdb9c2e66ab4b7394676a564578699, type: 3}
+  m_Script: {fileID: 11500000, guid: 185a87cfcb36041a587f2e715d76c4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledData: {fileID: 11400000, guid: 579a6322687d64842b2ae7ea34be793b, type: 2}
+  poolType: 0
+  storedData: {fileID: 11400000, guid: 579a6322687d64842b2ae7ea34be793b, type: 2}
+--- !u!114 &17325006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17325003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172672c7b020348f2821cd47ed3bbaa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &547814621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,6 +607,11 @@ PrefabInstance:
     - target: {fileID: 8209778948206908569, guid: 5062c1312f2beb14694d90a058d444e4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868790754558415699, guid: 5062c1312f2beb14694d90a058d444e4,
+        type: 3}
+      propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

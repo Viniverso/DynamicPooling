@@ -1,77 +1,33 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : Singleton<PoolManager>
 {
-    public PoolData pooledData;
-
-    private Dictionary<PooledType, Queue<BasePool>> container;
+    protected List<BasePool> pools;
 
     private void Awake()
     {
-        container = new Dictionary<PooledType, Queue<BasePool>>();
+        var _values = GameObject.FindObjectsOfType<BasePool>();
+
+        pools = new List<BasePool>(_values);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (pooledData)
-        {
-            foreach (BasePool _oP in pooledData.GetPools)
-            {
-                OccupyMemory(_oP);
-            }
-        }
+        var _pDecorative = GetPoolByType(PoolType.DECORATIVE);
+        var _pInteractive = GetPoolByType(PoolType.INTERACTIVE);
+        var _pPlayable = GetPoolByType(PoolType.PLAYABLE);
     }
 
-    public void RegisterObject(PooledType _type, BasePool _storedObject)
+    public BasePool GetPoolByType(PoolType _type)
     {
-        _storedObject.ObjectInstance.SetActive(false);
-        if (container.ContainsKey(_type))
-        {
-            container[_type].Enqueue(_storedObject);
-            Debug.Log("Container " + _type.ToString());
-        }
-        else
-        {
-            Queue<BasePool> _enqueue = new Queue<BasePool>();
-            _enqueue.Enqueue(_storedObject);
-            container.Add(_type,_enqueue);
-            Debug.Log("Container " + _type.ToString());
-        }
-    }
-
-    public Queue<BasePool>[] GetObjectsByPoolType(PooledType _bytype)
-    {
-        List<Queue<BasePool>> typeObjects = new List<Queue<BasePool>>();
-
-        foreach (var _obj in container)
-        {
-            if (_obj.Key == _bytype)
-            {
-                typeObjects.Add(_obj.Value);
-            }
-        }
-
-        return typeObjects.ToArray();
-    }
-
-
-    public void OccupyMemory(BasePool _pooledObject, int _amountInstances = 1)
-    {
-        for(int _i = 0; _i < _amountInstances; _i++)
-        {
-            var _instance = Instantiate(_pooledObject.gameObject);
-            BasePool _pooledComp = _instance.GetComponent<BasePool>();
-            _pooledComp.ObjectInstance = _instance;
-            RegisterObject(_pooledObject.Type, _pooledComp);
-        }
+        return pools.Where((t) => t.GetPoolType == _type) as BasePool;
     }
 }
 
-
-public enum PooledType
+public enum PoolType
 {
     DECORATIVE, //scene scene elements
     INTERACTIVE, //interactive objects in scene
