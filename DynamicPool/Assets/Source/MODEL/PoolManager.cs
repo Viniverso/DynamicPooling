@@ -19,6 +19,11 @@ public class PoolManager : Singleton<PoolManager>
         var _pDecorative = GetPoolByType(PoolType.DECORATIVE);
         var _pInteractive = GetPoolByType(PoolType.INTERACTIVE);
         var _pPlayable = GetPoolByType(PoolType.PLAYABLE);
+
+
+        Debug.Log("Decorative " + _pDecorative.ToString());
+        Debug.Log("Interactive " + _pInteractive.ToString());
+        Debug.Log("Playable " + _pPlayable.ToString());
     }
 
     public BasePool GetPoolByType(PoolType _type)

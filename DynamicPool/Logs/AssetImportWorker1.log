@@ -1,0 +1,35 @@
+Using pre-set license
+
+ COMMAND LINE ARGUMENTS:
+/Volumes/Softwares/Applications/Unity/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+/Volumes/Projects/Test/DynamicPool/DynamicPooling/DynamicPool
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+49577
+Successfully changed project path to: /Volumes/Projects/Test/DynamicPool/DynamicPooling/DynamicPool
+/Volumes/Projects/Test/DynamicPool/DynamicPooling/DynamicPool
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 210.92 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.1f1 (77a89f25062f)
+[Subsystems] Discovering subsystems at path /Volumes/Softwares/Applications/Unity/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Volumes/Projects/Test/DynamicPool/DynamicPooling/DynamicPool/Assets
+GfxDevice: creating device client; threaded=0
+2021-03-26 09:47:45.803 Unity[1119:28279] iMac preferred device: Intel(R) Iris(TM) Pro Graphics 6200 (low power)
+2021-03-26 09:47:45.803 Unity[1119:28279] Metal devices available: 1
+2021-03-26 09:47:45.804 Unity[1119:28279] 0: Intel(R) Iris(TM) Pro Graphics 6200 (low power)
+2021-03-26 09:47:45.804 Unity[1119:28279] Using device Intel(R) Iris(TM) Pro Graphics 6200 (low power)
+Initializing Metal device caps: Intel(R) Iris(TM) Pro Graphics 6200
+Initialize mono
+Mono path[0] = '/Volumes/Softwares/Applications/Unity/Unity.app/Contents/Managed'
+Mono path[1] = '/Volumes/Softwares/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Volumes/Softwares/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56119
+Begin MonoManager ReloadAssembly
