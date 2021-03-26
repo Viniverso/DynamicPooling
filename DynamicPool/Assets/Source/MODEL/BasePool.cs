@@ -15,12 +15,12 @@ public class BasePool : MonoBehaviour, IPool
     private void Awake()
     {
         availableObjects = new Queue<BasePEntity>();
-        //StockSpace();
+
     }
 
-    public void StartPoolByStockSpace()
+    public void StartStorage()
     {
-        StockSpace();
+        StartCoroutine(StockSpace());
     }
 
     public virtual void AddToPool(BasePEntity _bPool)
@@ -31,6 +31,7 @@ public class BasePool : MonoBehaviour, IPool
 
     public virtual BasePEntity GetFromPool()
     {
+        Debug.Log("FROM POOl");
         if (availableObjects.Count == 0)
             StockSpace();
 
@@ -39,17 +40,24 @@ public class BasePool : MonoBehaviour, IPool
         return _receivedEntity;
     }
 
-    protected void StockSpace()
+    protected IEnumerator StockSpace()
     {
-        for (int _i = 0; _i < storedData.StackLength; _i++)
+        while (!IsStockComplete)
         {
-            foreach(BasePEntity _ent in storedData.GetEntities)
+            for (int _i = 0; _i < storedData.StackLength; _i++)
             {
-                var addInstance = Instantiate(_ent);
-                AddToPool(addInstance);
+                foreach (BasePEntity _ent in storedData.GetEntities)
+                {
+                    var addInstance = Instantiate(_ent);
+                    AddToPool(addInstance);
+                }
+                if (_i == storedData.StackLength - 1)
+                {
+                    IsStockComplete = true;
+                    Debug.Log("Stock Complete");
+                }
             }
-            if (_i == storedData.StackLength - 1)
-                IsStockComplete = true;
+            yield return null;
         }
     }
 

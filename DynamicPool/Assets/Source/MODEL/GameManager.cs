@@ -4,15 +4,17 @@ using System.Collections;
 
 public class GameManager: Singleton<GameManager>
 {
+    PoolManager _poolManager;
+
+    [SerializeField]
+    Vector3 startPosition = Vector3.up;
+
     // Use this for initialization
     void Start()
     {
-        //InsertDecorative();
-    }
+        _poolManager = GameObject.FindObjectOfType<PoolManager>();
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        BasePEntity instance = _poolManager.GetFromSpecificPool(PoolType.DECORATIVE);
+        instance.ObjectInstance.transform.position = startPosition;
     }
 }

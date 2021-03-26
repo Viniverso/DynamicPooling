@@ -7,4 +7,9 @@ public class Entity : BasePEntity
     {
         ObjectInstance = this.gameObject;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        PoolManager.SingletonInstance.InsertObjectToSpecificPool(GetPoolType, this);
+    }
 }
