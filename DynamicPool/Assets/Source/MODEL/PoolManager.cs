@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class PoolManager : Singleton<PoolManager>
 {
-    protected List<BasePool> pools;
+    protected List<BasePool> poolsOnScene ;
 
     private void Awake()
     {
         var _values = GameObject.FindObjectsOfType<BasePool>();
 
-        pools = new List<BasePool>(_values);
+        poolsOnScene = new List<BasePool>(_values);
+        Debug.Log("P " + poolsOnScene.Count);
     }
 
     private void Start()
@@ -19,16 +20,16 @@ public class PoolManager : Singleton<PoolManager>
         var _pDecorative = GetPoolByType(PoolType.DECORATIVE);
         var _pInteractive = GetPoolByType(PoolType.INTERACTIVE);
         var _pPlayable = GetPoolByType(PoolType.PLAYABLE);
-
-
-        Debug.Log("Decorative " + _pDecorative.ToString());
-        Debug.Log("Interactive " + _pInteractive.ToString());
-        Debug.Log("Playable " + _pPlayable.ToString());
     }
 
     public BasePool GetPoolByType(PoolType _type)
     {
-        return pools.Where((t) => t.GetPoolType == _type) as BasePool;
+        foreach(BasePool _bPool in poolsOnScene)
+        {
+            if (_bPool.GetPoolType == _type)
+                return _bPool;
+        }
+        return null;
     }
 }
 

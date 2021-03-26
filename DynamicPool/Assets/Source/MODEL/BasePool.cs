@@ -15,6 +15,11 @@ public class BasePool : MonoBehaviour, IPool
     private void Awake()
     {
         availableObjects = new Queue<BasePEntity>();
+        //StockSpace();
+    }
+
+    public void StartPoolByStockSpace()
+    {
         StockSpace();
     }
 
@@ -34,7 +39,7 @@ public class BasePool : MonoBehaviour, IPool
         return _receivedEntity;
     }
 
-    public virtual void StockSpace()
+    protected void StockSpace()
     {
         for (int _i = 0; _i < storedData.StackLength; _i++)
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public interface IPool
 {
-    void StockSpace();
+    public PoolType GetPoolType { get; }
 
     public BasePEntity GetFromPool();
     public void AddToPool(BasePEntity _bPool);
