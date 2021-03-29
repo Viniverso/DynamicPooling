@@ -56,14 +56,17 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Source/VIEW/PlayerView.cs" />
+    <Compile Include="Assets/Source/MODEL/GameManager.cs" />
+    <Compile Include="Assets/Source/MODEL/IPool.cs" />
+    <Compile Include="Assets/Source/MODEL/PoolData.cs" />
     <Compile Include="Assets/Source/MODEL/PoolManager.cs" />
-    <Compile Include="Assets/Source/MODEL/ObjectPool.cs" />
+    <Compile Include="Assets/Source/VIEW/BasePEntity.cs" />
     <Compile Include="Assets/Source/MODEL/Singleton.cs" />
     <Compile Include="Assets/Source/CONTROLLER/InputController.cs" />
+    <Compile Include="Assets/Source/VIEW/DecorativePool.cs" />
+    <Compile Include="Assets/Source/VIEW/InteractivePool.cs" />
     <Compile Include="Assets/Source/MODEL/BasePool.cs" />
-    <Compile Include="Assets/Source/MODEL/PoolData.cs" />
-    <Compile Include="Assets/Source/MODEL/GameManager.cs" />
+    <Compile Include="Assets/Source/VIEW/Entity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Pool Data
   m_EditorClassIdentifier: 
   basePools:
-  - {fileID: 62245949543653598, guid: 9cb42df8a3a2f4ff7b730ae5fb7c77c2, type: 3}
+  - {fileID: -1195919595682271210, guid: 9cb42df8a3a2f4ff7b730ae5fb7c77c2, type: 3}
+  stackEntityLength: 10

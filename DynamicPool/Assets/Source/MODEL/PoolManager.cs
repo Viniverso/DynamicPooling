@@ -1,77 +1,59 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : Singleton<PoolManager>
 {
-    public PoolData pooledData;
-
-    private Dictionary<PooledType, Queue<BasePool>> container;
+    protected List<BasePool> poolsOnScene;
 
     private void Awake()
     {
-        container = new Dictionary<PooledType, Queue<BasePool>>();
+        var _values = GameObject.FindObjectsOfType<BasePool>();
+
+        poolsOnScene = new List<BasePool>(_values);
+        Debug.Log("P " + poolsOnScene.Count);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (pooledData)
-        {
-            foreach (BasePool _oP in pooledData.GetPools)
-            {
-                OccupyMemory(_oP);
-            }
-        }
+        var _pDecorative = GetPoolByType(PoolType.DECORATIVE);
+        var _pInteractive = GetPoolByType(PoolType.INTERACTIVE);
+        var _pPlayable = GetPoolByType(PoolType.PLAYABLE);
+
+        if (_pDecorative)
+            _pDecorative.StartStorage();
+
+        if (_pInteractive)
+            _pInteractive.StartStorage();
+
+        if (_pPlayable)
+            _pPlayable.StartStorage();
     }
 
-    public void RegisterObject(PooledType _type, BasePool _storedObject)
+    public BasePool GetPoolByType(PoolType _type)
     {
-        _storedObject.ObjectInstance.SetActive(false);
-        if (container.ContainsKey(_type))
+        foreach(BasePool _bPool in poolsOnScene)
         {
-            container[_type].Enqueue(_storedObject);
-            Debug.Log("Container " + _type.ToString());
+            if (_bPool.GetPoolType == _type)
+                return _bPool;
         }
-        else
-        {
-            Queue<BasePool> _enqueue = new Queue<BasePool>();
-            _enqueue.Enqueue(_storedObject);
-            container.Add(_type,_enqueue);
-            Debug.Log("Container " + _type.ToString());
-        }
+        return null;
     }
 
-    public Queue<BasePool>[] GetObjectsByPoolType(PooledType _bytype)
+    public void InsertObjectToSpecificPool(PoolType _type, BasePEntity _entity)
     {
-        List<Queue<BasePool>> typeObjects = new List<Queue<BasePool>>();
-
-        foreach (var _obj in container)
-        {
-            if (_obj.Key == _bytype)
-            {
-                typeObjects.Add(_obj.Value);
-            }
-        }
-
-        return typeObjects.ToArray();
+        BasePool _basePool = GetPoolByType(_type);
+        _basePool.AddToPool(_entity);
     }
 
-
-    public void OccupyMemory(BasePool _pooledObject, int _amountInstances = 1)
+    public BasePEntity GetFromSpecificPool(PoolType _type)
     {
-        for(int _i = 0; _i < _amountInstances; _i++)
-        {
-            var _instance = Instantiate(_pooledObject.gameObject);
-            BasePool _pooledComp = _instance.GetComponent<BasePool>();
-            _pooledComp.ObjectInstance = _instance;
-            RegisterObject(_pooledObject.Type, _pooledComp);
-        }
+        return GetPoolByType(_type).GetFromPool();
     }
 }
 
-
-public enum PooledType
+public enum PoolType
 {
     DECORATIVE, //scene scene elements
     INTERACTIVE, //interactive objects in scene
